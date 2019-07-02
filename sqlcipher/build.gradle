@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "net.zetetic:android-database-sqlcipher:$versions.sqlcipher"
+    implementation "com.j256.ormlite:ormlite-core:$versions.ormlite"
+    implementation "commons-logging:commons-logging:$versions.commonsLogging"
+    implementation("log4j:log4j:$versions.log4j") {
+        exclude group: "com.sun.jmx", module: "jmxri"
+        exclude group: "com.sun.jdmk", module: "jmxtools"
+        exclude group: "javax.activation", module: "activation"
+        exclude group: "javax.jms", module: "jms"
+        exclude group: "javax.mail", module: "mail"
+    }
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
